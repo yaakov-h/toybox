@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace toybox.Pages;
+namespace Toybox.Pages;
 
 public class IndexModel : PageModel
 {
