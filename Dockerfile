@@ -1,14 +1,13 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /source
 
-COPY src/*.csproj ./src/
-RUN dotnet restore src/toybox.csproj
+COPY src/*.csproj .
+RUN dotnet restore --use-current-runtime  
 
-COPY src/. ./app/
-WORKDIR /source/app
-RUN dotnet publish toybox.csproj -c release -o /app
+COPY src/. .
+RUN dotnet publish -c Release -o /app --use-current-runtime --self-contained false --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
-COPY --from=build /app ./
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "toybox.dll"]
