@@ -6,7 +6,7 @@ RUN dotnet restore src/toybox.csproj
 
 COPY src/. ./app/
 WORKDIR /source/app
-RUN dotnet publish toybox.csproj -c release -o /app
+RUN dotnet publish src/toybox.csproj -c release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
