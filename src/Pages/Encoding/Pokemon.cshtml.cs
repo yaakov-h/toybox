@@ -1,6 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace Toybox.Pages;
 
@@ -17,7 +19,12 @@ public partial class PokemonModel : PageModel
     public string? Mode { get; set; }
 
     [BindProperty]
+    public string? Pokedex { get; set; }
+
+    [BindProperty]
     public string? Value { get; set; }
+
+    public bool Selected(string text) => string.Equals(text, Pokedex, StringComparison.OrdinalIgnoreCase);
 
     public void OnPost()
     {
@@ -26,19 +33,26 @@ public partial class PokemonModel : PageModel
             return;
         }
 
+        if (Pokedex is null || !Enum.TryParse<Lookups.Pokedex>(Pokedex, ignoreCase: true, out var pokedex))
+        {
+            logger.LogInformation("Unable to parse Pokedex value '{Pokedex}'", Pokedex);
+            return;
+        }
+
         if (Mode.Equals("encode"))
         {
-            Value = Encode(Value.ToString().Trim());
+            Value = Encode(pokedex, Value.ToString().Trim());
         }
         else if (Mode.Equals("decode"))
         {
-            Value = Decode(Value.ToString().Trim());
+            Value = Decode(pokedex, Value.ToString().Trim());
         }
     }
 
-    string Encode(ReadOnlySpan<char> text)
+    string Encode(Lookups.Pokedex pokedex, ReadOnlySpan<char> text)
     {
         var output = new StringBuilder();
+        var list = Lookups.PokemonLists[pokedex];
 
         while (text.Length > 0)
         {
@@ -49,13 +63,13 @@ public partial class PokemonModel : PageModel
             else
             {
                 var index = text[0] - 1; // The tables are 0-indexed but should be 1-indexed;
-                if (index >= 0 && index < PokemonKanto.Count)
+                if (index >= 0 && index < list.Count)
                 {
                     if (output.Length > 0)
                     {
                         output.Append(" ");
                     }
-                    output.Append(PokemonKanto[index]);
+                    output.Append(list[index]);
                 }
                 else
                 {
@@ -69,9 +83,10 @@ public partial class PokemonModel : PageModel
         
     }
 
-    string Decode(ReadOnlySpan<char> text)
+    string Decode(Lookups.Pokedex pokedex, ReadOnlySpan<char> text)
     {
         var output = new StringBuilder();
+        var table = Lookups.PokemonLookups[pokedex];
         
         while (text.Length > 0)
         {
@@ -112,7 +127,7 @@ public partial class PokemonModel : PageModel
 
                 var key = next.ToString();
 
-                if (PokemonKantoReverse.TryGetValue(key, out var charCode))
+                if (table.TryGetValue(key, out var charCode))
                 {
                     output.Append((char)(charCode + 1)); // Adjust for 0-indexing
                 }

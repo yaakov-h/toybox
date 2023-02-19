@@ -6,11 +6,14 @@
 
 <div class="text-center">
     <h1 class="display-4">Pokemon</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>This page encodes (and decodes) text as Pokémon names by using their equivalent ASCII representation as Pokédex numbers.</p>
+    <p>Select a Pokédex to use for the encoding from the dropdown below.</p>
 
     <form method="post">
         <textarea name="value" style="width: 100%; min-height: 150px;">@Model.Value</textarea>
         <br />
+        <select name="pokedex" asp-for="Pokedex" asp-items="Html.GetEnumSelectList<PokemonModel.Lookups.Pokedex>()">
+        </select>
         <input name="mode" value="decode" type="submit" />
         <input name="mode" value="encode" type="submit" />
     </form>

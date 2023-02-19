@@ -50,6 +50,7 @@ Surskit
 Masquerain
 Buizel
 Floatzel
+Wooper
 Clodsire
 Psyduck
 Golduck
@@ -219,6 +220,7 @@ Swablu
 Altaria
 Skiddo
 Gogoat
+Tauros
 Litleo
 Pyroar
 Stunky
