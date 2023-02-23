@@ -6,12 +6,12 @@ namespace Toybox.Pages;
 
 public partial class MorseModel : PageModel
 {
-    public MorseModel(ILogger<PokemonModel> logger)
+    public MorseModel(ILogger<MorseModel> logger)
     {
         this.logger = logger;
     }
     
-    readonly ILogger<PokemonModel> logger;
+    readonly ILogger<MorseModel> logger;
 
     [BindProperty]
     public string? Mode { get; set; }

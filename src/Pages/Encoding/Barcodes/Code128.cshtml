@@ -1,0 +1,30 @@
+﻿@page
+@model Code128Model
+@{
+    ViewData["Title"] = "Code128 (Barcode)";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Code 128</h1>
+    <p><a href="https://en.wikipedia.org/wiki/Code_128">Code 128</a> is probably the most common one-dimensional barcode you see everywhere.</p>
+
+    @if (!string.IsNullOrEmpty(Model.Error))
+    {
+        <div class="error-callout">
+            <p>@Model.Error</p>
+        </div>
+    }
+
+    @if(Model.ImageUri != null)
+    {
+        <div style="margin-left: auto; margin-right: auto; text-align: center;">
+            <img src="@Model.ImageUri"/>
+        </div>
+    }
+
+    <form method="post">
+        <textarea name="value" style="width: 100%; min-height: 50px;" maxlength="80">@Model.Value</textarea>
+        <br />
+        <input type="submit" />
+    </form>
+</div>

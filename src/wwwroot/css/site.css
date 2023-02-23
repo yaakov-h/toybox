@@ -1,0 +1,16 @@
+div.error-callout p
+{
+  display: block;
+  width: auto;
+  clear: both;
+  background-color: rgb(255, 255, 184);
+
+  padding: 8px 16px 8px 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+div.error-callout p::before
+{
+    content: "⚠️ "
+}

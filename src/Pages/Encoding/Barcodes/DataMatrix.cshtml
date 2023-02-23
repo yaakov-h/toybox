@@ -1,0 +1,23 @@
+﻿@page
+@model DataMatrixModel
+@{
+    ViewData["Title"] = "Data Matrix";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Data Matrix</h1>
+    <p><a href="https://en.wikipedia.org/wiki/Data_Matrix">Data Matrix</a> is a particular kind of two-dimensional barcode that you may find on certification labels or shipping labels.</p>
+
+    @if(Model.ImageUri != null)
+    {
+        <div style="margin-left: auto; margin-right: auto; text-align: center;">
+            <img src="@Model.ImageUri"/>
+        </div>
+    }
+
+    <form method="post">
+        <textarea name="value" style="width: 100%; min-height: 50px;" maxlength="80">@Model.Value</textarea>
+        <br />
+        <input type="submit" />
+    </form>
+</div>

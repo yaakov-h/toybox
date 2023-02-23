@@ -1,0 +1,23 @@
+﻿@page
+@model PDF417Model
+@{
+    ViewData["Title"] = "PDF417";
+}
+
+<div class="text-center">
+    <h1 class="display-4">PDF417</h1>
+    <p><a href="https://en.wikipedia.org/wiki/PDF417">PDF417</a> is a particular kind of two-dimensional barcode, often used in transport and in aviation on boarding passes.</p>
+
+    @if(Model.ImageUri != null)
+    {
+        <div style="margin-left: auto; margin-right: auto; text-align: center;">
+            <img src="@Model.ImageUri"/>
+        </div>
+    }
+
+    <form method="post">
+        <textarea name="value" style="width: 100%; min-height: 50px;">@Model.Value</textarea>
+        <br />
+        <input type="submit" />
+    </form>
+</div>

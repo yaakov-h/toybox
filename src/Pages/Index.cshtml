@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
 <div class="text-center">
@@ -9,7 +9,15 @@
     <p>This is just a little site to build some small toys, which you may or may not find useful.</p>
     <h2>Features:</h2>
     <ul>
-        <li><a casp-area="" asp-page="/Encoding/Morse">Morse Code</a> encoder and decoder (text only)</li>
-        <li><a casp-area="" asp-page="/Encoding/Pokemon">Pokemon</a> encoder and decoder (ASCII-to-Pokédex)</li>
+        <li><a asp-page="/encoding/morse">Morse Code</a> encoder and decoder (text only)</li>
+        <li><a asp-page="/encoding/pokemon">Pokemon</a> encoder and decoder (ASCII-to-Pokédex)</li>
+        <li>Barcode Encoders:
+            <ul>
+                <li><a asp-page="/encoding/barcodes/code128">Code128</a> (a.k.a "normal barcode") encoder
+                <li><a asp-page="/encoding/barcodes/qrcode">QR Code</a> encoder</li>
+                <li><a asp-page="/encoding/barcodes/pdf417">PDF417</a> encoder</li>
+                <li><a asp-page="/encoding/barcodes/datamatrix">Data Matrix</a> encoder</li>
+            </ul>
+        </li>
     </ul>
 </div>

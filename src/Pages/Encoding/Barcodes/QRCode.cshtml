@@ -1,0 +1,23 @@
+﻿@page
+@model QRCodeModel
+@{
+    ViewData["Title"] = "QR Code";
+}
+
+<div class="text-center">
+    <h1 class="display-4">QR Code</h1>
+    <p>A <a href="https://en.wikipedia.org/wiki/QR_code">QR Code</a> is a particular kind of two-dimensional barcode that can be used to store data, often URLs.</p>
+
+    @if(Model.ImageUri != null)
+    {
+        <div style="margin-left: auto; margin-right: auto; text-align: center;">
+            <img src="@Model.ImageUri"/>
+        </div>
+    }
+
+    <form method="post">
+        <textarea name="value" style="width: 100%; min-height: 50px;">@Model.Value</textarea>
+        <br />
+        <input type="submit" />
+    </form>
+</div>
