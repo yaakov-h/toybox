@@ -25,13 +25,17 @@ jobs:
         username: github-actions
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y%m%d-%H%M%S')"
+
     - name: Build and push container
       uses: docker/build-push-action@v2
       with:
         push: true
         tags: |
           registry.yaakov.online/toybox-site:latest
-          registry.yaakov.online/toybox-site:${{ github.sha }}
+          registry.yaakov.online/toybox-site:${{ github.ref_name }}-${{ github.sha }}-${{ steps.date.outputs.date }}
         platforms: |
           linux/amd64
           linux/arm64
