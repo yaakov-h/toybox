@@ -25,7 +25,7 @@ jobs:
         username: github-actions
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
-    - name: Get current date
+    - name: Get current date for OCI image
       id: date
       run: echo "date=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
 
