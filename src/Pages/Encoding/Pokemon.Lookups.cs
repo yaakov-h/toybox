@@ -75,7 +75,7 @@ partial class PokemonModel
 
         public static ImmutableDictionary<Pokedex, ImmutableDictionary<string, int>> PokemonLookups { get; } = PokemonLists.ToImmutableDictionary(
             kvp => kvp.Key,
-            kvp => kvp.Value.Select((name, idx) => (name, idx)).ToImmutableDictionary(kvp => kvp.name, kvp => kvp.idx)
+            kvp => kvp.Value.Select((name, idx) => (name, idx)).ToImmutableDictionary(kvp => kvp.name, kvp => kvp.idx, StringComparer.OrdinalIgnoreCase)
         );
     }
 }
