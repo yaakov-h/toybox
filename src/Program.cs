@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,5 +24,11 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+app.MapGet("sleep", async ([FromQuery] int? seconds, CancellationToken cancellationToken) =>
+{
+    await Task.Delay(TimeSpan.FromSeconds(seconds ?? 1), cancellationToken);
+    return Results.Ok();
+});
 
 app.Run();
