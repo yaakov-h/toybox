@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /source
+ENV DOTNET_EnableWriteXorExecute=0
 
 COPY src/*.csproj .
 RUN dotnet restore --use-current-runtime  
