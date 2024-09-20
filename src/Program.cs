@@ -25,7 +25,7 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.MapGet("sleep", async ([FromQuery] int? seconds, CancellationToken cancellationToken) =>
+app.MapGet("api/sleep", async ([FromQuery] int? seconds, CancellationToken cancellationToken) =>
 {
     await Task.Delay(TimeSpan.FromSeconds(seconds ?? 1), cancellationToken);
     return Results.Ok();
