@@ -38,4 +38,4 @@ jobs:
     - name: Push Container Image to Registry
       run: |
         podman push toybox registry.yaakov.online/toybox-site:latest
-        pudman push registry.yaakov.online/toybox-site:${{ github.ref_name }}-${{ github.sha }}-${{ steps.date.outputs.date }}
+        podman push toybox registry.yaakov.online/toybox-site:${{ github.ref_name }}-${{ github.sha }}-${{ steps.date.outputs.date }}
