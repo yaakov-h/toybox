@@ -13,6 +13,9 @@ jobs:
       run: |
         sudo apt -y install podman
 
+    - name: Set up QEMU for cross-compilation
+      uses: docker/setup-qemu-action@v3
+
     - name: Get the code
       uses: actions/checkout@v2
 
